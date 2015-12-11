@@ -1,0 +1,36 @@
+<h1><%= @location_and_time %></h1>
+<%= form_tag "/", method: :get do %>
+<div>
+  <%= label_tag :city %>
+  <%= text_field_tag :city %>
+</div>
+<div>
+  <%= label_tag :state %>
+  <%= text_field_tag :state %>
+</div>
+<%= submit_tag "Submit" %>
+<% end %>
+
+
+<h2> Current Conditions </h2>
+<ul>
+  <li><%= @current_condition["temp"]%>&deg; F</li>
+  <li><%= @description.html_safe %></li>
+</ul>
+<h2> 5 Day Forecast </h2>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>High</th>
+    <th>Low</th>
+    <th>Description</th>
+  </tr>
+  <% @forecasts.each do |forecast| %>
+  <tr>
+    <td><%= forecast["date"] %></td>
+    <td><%= forecast["high"] %>&deg; F</td>
+    <td><%= forecast["low"] %>&deg; F</td>
+    <td><%= forecast["low"] %>&deg; F</td>
+  </tr>
+  <% end %>
+</table>
